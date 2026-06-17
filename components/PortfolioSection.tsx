@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { localizedData } from '../services/mockData';
+import Link from 'next/link';
 
 interface SectionProps {
   theme?: 'dark' | 'light';
@@ -138,25 +139,27 @@ export default function PortfolioSection({ theme = 'dark', lang }: SectionProps)
                 </div>
 
                 <div className="pt-4">
-                  <a href="#" className="inline-flex items-center gap-2 text-sm font-bold text-blue-500 hover:text-blue-600 transition-colors">
-                    {data.uiText.portfolioDocLink} <span>→</span>
-                  </a>
+                  <Link href="/portfolio/aether" className="inline-flex items-center gap-2 text-sm font-bold text-blue-500 hover:text-blue-600 transition-colors">
+                    {lang === 'id' ? 'Lihat Studi Kasus Lengkap' : 'Read Full Case Study'} <span>→</span>
+                  </Link>
                 </div>
               </div>
 
               {/* Product Mockup Image */}
               <div className="lg:col-span-6 flex justify-center">
-                <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden p-1 bg-gradient-to-tr from-cyan-500/30 to-purple-500/30 shadow-2xl">
-                  <div className={`rounded-xl overflow-hidden w-full h-full border ${
-                    isDark ? 'bg-slate-950 border-slate-900' : 'bg-white border-slate-200'
-                  }`}>
-                    <img 
-                      src="/portfolio_mockup.png" 
-                      alt="Financial Dashboard UI Showcase" 
-                      className="w-full h-full object-cover opacity-90 group-hover:scale-102 transition-transform duration-500"
-                    />
+                <Link href="/portfolio/aether" className="w-full">
+                  <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden p-1 bg-gradient-to-tr from-cyan-500/30 to-purple-500/30 shadow-2xl cursor-pointer hover:opacity-95 transition-opacity">
+                    <div className={`rounded-xl overflow-hidden w-full h-full border ${
+                      isDark ? 'bg-slate-950 border-slate-900' : 'bg-white border-slate-200'
+                    }`}>
+                      <img 
+                        src="/portfolio_mockup.png" 
+                        alt="Financial Dashboard UI Showcase" 
+                        className="w-full h-full object-cover opacity-90 group-hover:scale-102 transition-transform duration-500"
+                      />
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
 
             </div>
@@ -166,9 +169,10 @@ export default function PortfolioSection({ theme = 'dark', lang }: SectionProps)
         {/* Regular Grid Portfolio */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredProjects.filter(p => !p.featured || selectedCategory !== (lang === 'id' ? 'Semua' : 'All')).map((proj, idx) => (
-            <div 
+            <Link 
               key={idx} 
-              className={`group relative rounded-3xl border p-6 flex flex-col justify-between transition-all duration-300 shadow-md hover:shadow-lg ${
+              href={`/portfolio/${proj.slug}`}
+              className={`group relative rounded-3xl border p-6 flex flex-col justify-between transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 ${
                 isDark 
                   ? 'border-slate-900 bg-slate-900/30 hover:border-slate-800 hover:bg-slate-900/60' 
                   : 'border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-white'
@@ -189,16 +193,21 @@ export default function PortfolioSection({ theme = 'dark', lang }: SectionProps)
                     isDark ? 'from-slate-950/40' : 'from-white/40'
                   }`}></div>
                 </div>
-
+ 
                 {/* Tag & Title */}
                 <div className="space-y-2 text-left">
-                  <span className="text-xs font-bold text-blue-500 uppercase tracking-widest">{proj.category}</span>
-                  <h4 className={`text-2xl font-bold font-heading ${isDark ? 'text-white' : 'text-slate-900'}`}>{proj.title}</h4>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-bold text-blue-500 uppercase tracking-widest">{proj.category}</span>
+                    <span className="text-xs font-bold text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                      {lang === 'id' ? 'Detail →' : 'Details →'}
+                    </span>
+                  </div>
+                  <h4 className={`text-2xl font-bold font-heading transition-colors duration-300 group-hover:text-blue-500 ${isDark ? 'text-white' : 'text-slate-900'}`}>{proj.title}</h4>
                   <p className={`text-sm font-light leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-650'}`}>{proj.desc}</p>
                 </div>
-
+ 
               </div>
-
+ 
               {/* Footer Tech stack badges */}
               <div className={`flex flex-wrap gap-2 mt-6 pt-6 border-t ${
                 isDark ? 'border-slate-900' : 'border-slate-200'
@@ -213,8 +222,8 @@ export default function PortfolioSection({ theme = 'dark', lang }: SectionProps)
                   </span>
                 ))}
               </div>
-
-            </div>
+ 
+            </Link>
           ))}
         </div>
 

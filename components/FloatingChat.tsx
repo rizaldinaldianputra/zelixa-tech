@@ -28,19 +28,19 @@ export default function FloatingChat({ theme = 'dark', lang }: SectionProps) {
     ]);
   }, [lang, data.uiText.chatWelcome]);
 
-  const quickPrompts = lang === 'id' 
+  const quickPrompts = lang === 'id'
     ? [
-        { label: "Layanan Kami 💻", text: "Apa saja layanan yang ditawarkan?" },
-        { label: "Harga Produk 💰", text: "Berapa biaya pembuatan software?" },
-        { label: "Teknologi 🚀", text: "Teknologi apa saja yang digunakan?" },
-        { label: "Konsultasi 🤝", text: "Saya ingin menjadwalkan panggilan konsultasi teknis." }
-      ]
+      { label: "Layanan Kami 💻", text: "Apa saja layanan yang ditawarkan?" },
+      { label: "Harga Produk 💰", text: "Berapa biaya pembuatan software?" },
+      { label: "Teknologi 🚀", text: "Teknologi apa saja yang digunakan?" },
+      { label: "Konsultasi 🤝", text: "Saya ingin menjadwalkan panggilan konsultasi teknis." }
+    ]
     : [
-        { label: "Our Services 💻", text: "What services do you offer?" },
-        { label: "Product Pricing 💰", text: "How much does it cost to build a software?" },
-        { label: "Tech Stack 🚀", text: "What technologies do you use?" },
-        { label: "Consultation 🤝", text: "I want to schedule a technical call." }
-      ];
+      { label: "Our Services 💻", text: "What services do you offer?" },
+      { label: "Product Pricing 💰", text: "How much does it cost to build a software?" },
+      { label: "Tech Stack 🚀", text: "What technologies do you use?" },
+      { label: "Consultation 🤝", text: "I want to schedule a technical call." }
+    ];
 
   const chatResponses = {
     id: {
@@ -92,13 +92,12 @@ export default function FloatingChat({ theme = 'dark', lang }: SectionProps) {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 select-none">
-      
+
       {/* Assistant Window */}
       {isOpen && (
-        <div className={`absolute bottom-18 right-0 w-[330px] md:w-[360px] rounded-3xl shadow-2xl border overflow-hidden flex flex-col transform origin-bottom-right transition-all animate-fade-in-up ${
-          isDark ? 'bg-slate-950/90 border-slate-900' : 'bg-white/95 border-slate-200'
-        } backdrop-blur-2xl`}>
-          
+        <div className={`absolute bottom-18 right-0 w-[330px] md:w-[360px] rounded-3xl shadow-2xl border overflow-hidden flex flex-col transform origin-bottom-right transition-all animate-fade-in-up ${isDark ? 'bg-slate-950/90 border-slate-900' : 'bg-white/95 border-slate-200'
+          } backdrop-blur-2xl`}>
+
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 p-4 text-white flex items-center justify-between">
             <div className="flex items-center gap-3 text-left">
@@ -119,15 +118,14 @@ export default function FloatingChat({ theme = 'dark', lang }: SectionProps) {
             {messages.map((msg, idx) => {
               const isBot = msg.sender === 'bot';
               return (
-                <div 
-                  key={idx} 
-                  className={`max-w-[85%] rounded-2xl p-3.5 text-xs leading-relaxed text-left ${
-                    isBot 
-                      ? isDark 
-                        ? 'bg-slate-900 border border-slate-800 text-slate-200 rounded-tl-sm self-start shadow-sm'
-                        : 'bg-slate-100 border border-slate-200 text-slate-800 rounded-tl-sm self-start shadow-sm'
-                      : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-tr-sm self-end shadow-md shadow-blue-500/10'
-                  }`}
+                <div
+                  key={idx}
+                  className={`max-w-[85%] rounded-2xl p-3.5 text-xs leading-relaxed text-left ${isBot
+                    ? isDark
+                      ? 'bg-slate-900 border border-slate-800 text-slate-200 rounded-tl-sm self-start shadow-sm'
+                      : 'bg-slate-100 border border-slate-200 text-slate-800 rounded-tl-sm self-start shadow-sm'
+                    : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-tr-sm self-end shadow-md shadow-blue-500/10'
+                    }`}
                 >
                   {msg.text}
                 </div>
@@ -135,9 +133,8 @@ export default function FloatingChat({ theme = 'dark', lang }: SectionProps) {
             })}
 
             {isTyping && (
-              <div className={`rounded-2xl rounded-tl-sm p-3.5 text-[10px] font-medium self-start flex items-center gap-1.5 border ${
-                isDark ? 'bg-slate-900 border-slate-800 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-500'
-              }`}>
+              <div className={`rounded-2xl rounded-tl-sm p-3.5 text-[10px] font-medium self-start flex items-center gap-1.5 border ${isDark ? 'bg-slate-900 border-slate-800 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-500'
+                }`}>
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-500 animate-bounce"></span>
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-500 animate-bounce delay-100"></span>
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-500 animate-bounce delay-200"></span>
@@ -147,18 +144,16 @@ export default function FloatingChat({ theme = 'dark', lang }: SectionProps) {
           </div>
 
           {/* Quick Prompts */}
-          <div className={`p-3 border-t flex flex-wrap gap-2 justify-start ${
-            isDark ? 'border-slate-900 bg-slate-950/60' : 'border-slate-150 bg-slate-50/60'
-          }`}>
+          <div className={`p-3 border-t flex flex-wrap gap-2 justify-start ${isDark ? 'border-slate-900 bg-slate-950/60' : 'border-slate-150 bg-slate-50/60'
+            }`}>
             {quickPrompts.map((p, idx) => (
               <button
                 key={idx}
                 onClick={() => handlePromptClick(p.text)}
-                className={`px-3 py-1.5 rounded-lg text-[10px] font-bold transition-colors text-left border cursor-pointer ${
-                  isDark 
-                    ? 'bg-slate-900 border-slate-850 hover:border-slate-700 text-slate-350 hover:text-white' 
-                    : 'bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-950'
-                }`}
+                className={`px-3 py-1.5 rounded-lg text-[10px] font-bold transition-colors text-left border cursor-pointer ${isDark
+                  ? 'bg-slate-900 border-slate-850 hover:border-slate-700 text-slate-350 hover:text-white'
+                  : 'bg-white border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-950'
+                  }`}
               >
                 {p.label}
               </button>
@@ -169,7 +164,7 @@ export default function FloatingChat({ theme = 'dark', lang }: SectionProps) {
       )}
 
       {/* Toggle Button */}
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-14 h-14 bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500 text-white rounded-2xl shadow-lg hover:scale-105 transition-all flex items-center justify-center text-2xl font-bold relative group cursor-pointer"
         aria-label="Toggle assistant widget"

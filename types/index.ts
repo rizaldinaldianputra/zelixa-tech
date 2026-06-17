@@ -13,6 +13,7 @@ export interface Service {
 }
 
 export interface Product {
+  slug: string;
   title: string;
   tag: string;
   desc: string;
@@ -20,6 +21,7 @@ export interface Product {
   longDesc?: string;
   metrics?: { label: string; value: string }[];
   techUsed?: string[];
+  gallery?: string[];
 }
 
 export interface Testimonial {
@@ -42,6 +44,7 @@ export interface WhyChooseUsItem {
 }
 
 export interface PortfolioProject {
+  slug: string;
   title: string;
   category: string;
   desc: string;
@@ -49,6 +52,12 @@ export interface PortfolioProject {
   liveLink: string;
   techStack: string[];
   featured?: boolean;
+  longDesc?: string;
+  challenges?: string[];
+  solutions?: string[];
+  metrics?: { label: string; value: string }[];
+  gallery?: string[];
+  liveText?: string;
 }
 
 export interface ProcessStep {
