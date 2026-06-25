@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String?
+  email     String   @unique
+  password  String
+  avatar    String?
+  role      String   @default("USER")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id        String   @id @default(uuid())
+  slug      String   @unique
+  title     String
+  tag       String
+  desc      String
+  longDesc  String?
+  features  String[]
+  techUsed  String[]
+  gallery   String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Portfolio {
+  id        String   @id @default(uuid())
+  slug      String   @unique
+  title     String
+  category  String
+  desc      String
+  longDesc  String?
+  image     String?
+  liveLink  String?
+  techStack String[]
+  featured  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Service {
+  id        String   @id @default(uuid())
+  title     String
+  desc      String
+  icon      String
+  colSpan   Int      @default(1)
+  bgClass   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(uuid())
+  name      String
+  role      String
+  avatar    String?
+  text      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
